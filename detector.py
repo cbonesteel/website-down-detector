@@ -2,7 +2,7 @@ import requests
 import time
 import matplotlib
 import sys
-matplotlib.use("TkAgg")
+# matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
@@ -14,7 +14,7 @@ time_history = []
 
 def __main__():
     if len(sys.argv) < 3:
-        print("[Error] No Arguments Provided\n Usage: python3 detector.py [url] [update time]")
+        print("[Error] No Arguments Provided\n Usage: python3 detector.py [url] [update_time]")
         return
     plt.ion()
     first = True
@@ -28,7 +28,7 @@ def __main__():
             requests.get(str(sys.argv[1]), verify=False)
             history.append(1)
         except ValueError:
-            print("[Error] Invalid URL\n Usage: python3 detector.py [url] [update time]")
+            print("[Error] Invalid URL\n Usage: python3 detector.py [url] [update_time]")
             return
         except Exception as e:
             history.append(0)
@@ -41,7 +41,7 @@ def __main__():
             ax.set(ylim=(0,1), yticks=np.arange(0,1.5))
             ax.autoscale(enable=True, axis='x')
             line1, = ax.plot(time_history, history)
-            plt.title("Gitlab Status", fontsize=20)
+            plt.title("Website Status", fontsize=20)
             plt.xlabel("Time")
             plt.ylabel("Status")
             first = False
@@ -56,7 +56,7 @@ def __main__():
         try:
             time.sleep(int(sys.argv[2]))
         except ValueError:
-            print("[Error] Invalid Update Time\n Usage: python3 detector.py [url] [update time]")
+            print("[Error] Invalid Update Time\n Usage: python3 detector.py [url] [update_time]")
             return
 
 if __name__=="__main__":
