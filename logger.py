@@ -1,5 +1,7 @@
 import requests, time, sys
 from datetime import date, datetime
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def main():
     if len(sys.argv) < 3:
@@ -19,6 +21,8 @@ def main():
                 return
             except Exception as e:
                 file.write("0\n")
+
+            file.flush()
 
             try:
                 time.sleep(int(sys.argv[2]))
